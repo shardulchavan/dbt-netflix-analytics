@@ -1,0 +1,12 @@
+# dbt artifacts
+dbt_packages/
+target/
+logs/
+
+# Virtual environment
+venv/
+../venv/
+
+# Secrets
+.env
+*.env

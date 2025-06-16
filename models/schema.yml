@@ -1,0 +1,51 @@
+models:
+  - name: dim_movies
+    description: Dimension Table for cleanse movie Metadata
+    columns:
+    - name: movie_id
+      description: Primary Key value of dim_movie
+      test: 
+        - not_null
+    - name: movie_title
+      description: Standardize movie movie_title
+      tests: 
+        - not_null
+    - name: genre_array
+      description: List of genres in array format
+    - name: genres
+      description: Raw genre string from sources
+
+
+  - name: fct_ratings
+    description: Fact Table of user ratings for movies 
+    columns:
+    - name: movie_id
+      description: Foreign Key value to dim_movies
+      test: 
+        - not_null
+        - relationships:
+          to: ref('dim_movies')
+          field: movie_id
+    - name: rating
+      description: User's rating for a movie
+      tests: 
+        - not_null
+    - name: rating_timestamp
+      description:  Unix timestamp when the rating was made
+
+      
+  - name: fct_genome_scores
+    description: Fact Table of relevance scores per movie and tag
+    columns:
+    - name: movie_id
+      description: Foreign Key value to dim_movies
+      test: 
+        - not_null
+    - name: tag_id
+      description: Foreign Key value to dim_genome_tags
+      tests: 
+        - not_null
+    - name: relevance_score
+      description:  Relevance Score (0 to 1) for tag's association to movies
+      tests: 
+        - not_null
