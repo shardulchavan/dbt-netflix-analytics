@@ -31,6 +31,13 @@ netflix_dbt/
 └── README.md              # project overview (you are here!)
 ```
 
+## 🧭 Project Dependency Graph
+
+This diagram shows how the dbt models, snapshots, and tests are connected.
+
+![DBT DAG](docs/dbt_dag.png)
+
+
 ## Data Flow
 1. Sources: Raw data from the MOVIELENS.RAW schema (e.g., ratings, movies, genome tags).
 
